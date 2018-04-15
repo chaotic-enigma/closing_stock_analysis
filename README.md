@@ -39,4 +39,4 @@ The graphs will be opened on the browser and by specifing the year and the month
 ![another_eample](https://user-images.githubusercontent.com/26375997/38781707-1ceeced0-4107-11e8-95dd-6142ea029ce3.png)
 
 
-The updation of the data automatically happens when it gets updated in the website (*Qundle*) and since the API call is being called, the graphs will be updated easily. No worries.
+The updation of the data automatically happens when it gets updated on the website (*Qundle*) and since the API call is being called, the graphs will be updated easily. No worries.
