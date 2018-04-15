@@ -14,7 +14,7 @@ easily obtained by just typing pip install <package_name> on terminal or command
 Make sure of having the API key which is the core component for obtaing the dataset. After installing **quandl** package, by typing
 
 ```
-df = quandl.get(dataset_that_is_to_be_analyzed, authtoken=your_api_key) #easily dataset can be obtained.
+df = quandl.get(dataset_to_be_analyzed, authtoken=your_api_key) # easily dataset can be obtained.
 ```
 The data will be on yearly basis that requires better organising of it (according to years and months updating it into a dictionary). __Better Organisation of the data, the beautiful plot__.
 
