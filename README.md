@@ -10,29 +10,25 @@ dash_html_components
 plotly
 
 easily obtained by just typing pip install <package_name> on terminal or command prompt
-
 ```
-Make sure of having the API key which is the core component for obtaing the dataset. After installing *quandl* package, by typing
+Make sure of having the API key which is the core component for obtaing the dataset. After installing **quandl** package, by typing
 
 ```
 df = quandl.get(dataset_that_is_to_be_analyzed, authtoken=your_api_key) #easily dataset can be obtained.
-
 ```
-The data will be on yearly basis that requires better organising of it. __Better Organisation of the data, better plot__.
+The data will be on yearly basis that requires better organising of it (according to years and months updating it into a dictionary). __Better Organisation of the data, the beautiful plot__.
 
-## Working
+### Working
 
 ```
 from test_plot import analyze_close_stock
 
-analyze_close_stock('provide_the_dataset')
-
+analyze_close_stock('provide_the_dataset(mostly_quandle_API_call)')
 ```
-and on terminal 
+and on terminal
 
 ```
 python file_name.py
-
 ```
 The graphs will be opened on the browser and by specifing the year and the month, the granted graph of that particular year and month will be plotted.
 
