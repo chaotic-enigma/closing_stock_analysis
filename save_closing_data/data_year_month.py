@@ -8,16 +8,13 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objs as go
 import simplejson as json
-import imgkit
-import base64
-import flask
 import csv
-import os
 
 app = dash.Dash(__name__)
 
-def data_as_per_the_year_and_month(dataset):
-	api_key = auth.key
+api_key = auth.key
+
+def data_as_per_the_year_and_month(dataset):	
 	try:
 		df = quandl.get(dataset, authtoken=api_key)
 		df = df.reset_index()
@@ -120,14 +117,25 @@ def data_as_per_the_year_and_month(dataset):
 
 				dfd = pd.read_csv('imp_data.csv')
 				dfd.to_html('table.html')
-				imgkit.from_file('table.html', 'table.jpg')
-
-				image_name = 'table.jpg'
-
-				return image_name
 
 			except Exception as e:
 				print(e)
+
+		def generate_table(year, month):
+			imp_df = pd.read_csv('imp_data.csv')
+			return html.Table(className='reaponsive-table',
+					children=[
+						html.Thead(
+							html.Tr(
+								children=[html.Th(col.title()) for col in imp_df.columns.values]
+							)
+						),
+						html.Tbody([
+							html.Tr(
+								children=[html.Td(data) for data in d]
+							)
+						for d in imp_df.values.tolist()])
+					])
 
 		app.config['suppress_callback_exceptions']=True
 		@app.callback(
@@ -160,6 +168,7 @@ def data_as_per_the_year_and_month(dataset):
 
 			closed = json.dumps(accurate)
 			grab_important_data(provide_year, provide_month)
+			return generate_table(provide_year, provide_month)
 
 		@app.callback(
 			Output('close_stock','figure'),
@@ -179,17 +188,10 @@ def data_as_per_the_year_and_month(dataset):
 				yaxis = dict(zeroline = False),
 				xaxis = dict(zeroline = False)
 			)
-
-			img_file_name = grab_important_data(year, month)
-			encoded_image = base64.b64encode(open(img_file_name, 'rb').read())
-
-			app.layout = html.Div([
-			    html.Img(src='data:image/png;base64,{}'.format(encoded_image))
-			])
 			
 			return {'data' : graphs,'layout' : layout}
 
 		app.run_server(debug=True)
 
 	except Exception as e:
-		print(e)
+		print(str(e))
