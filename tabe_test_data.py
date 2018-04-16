@@ -1,10 +1,11 @@
 import quandl
 import pandas as pd
 import csv
+import auth
 from datetime import datetime
 from collections import defaultdict
 
-key = 'tq-Xb-y63br1eq1j1jD3'
+key = auth.key
 q_df = quandl.get('NSE/KOTAKNIFTY',authtoken=key)
 q_df = q_df.reset_index()
 
