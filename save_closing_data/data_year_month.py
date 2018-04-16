@@ -127,12 +127,12 @@ def data_as_per_the_year_and_month(dataset):
 					children=[
 						html.Thead(
 							html.Tr(
-								children=[html.Th(col.title()) for col in imp_df.columns.values]
+								children=[html.Th(str(col.title()) + '\t') for col in imp_df.columns.values]
 							)
 						),
 						html.Tbody([
 							html.Tr(
-								children=[html.Td(data) for data in d]
+								children=[html.Td(str(data) + '\t') for data in d]
 							)
 						for d in imp_df.values.tolist()])
 					])
