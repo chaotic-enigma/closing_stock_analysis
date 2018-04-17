@@ -1,14 +1,17 @@
 import quandl
 import auth
-import datetime
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from datetime import datetime
 import plotly.graph_objs as go
 import simplejson as json
 
 app = dash.Dash(__name__)
+
+current_year = datetime.now().year
+current_month = datetime.now().month
 
 api_key = auth.key
 
@@ -54,7 +57,7 @@ def analyze_close_stock(quandl_api_call):
 			dcc.Dropdown(
 				id='years',
 				options=[{'label' : s,'value' : s} for s in adani_ports.keys()],
-				value=2018
+				value=current_year
 			),
 			html.Hr(),
 			html.H4('Select Month: '),
@@ -83,7 +86,10 @@ def analyze_close_stock(quandl_api_call):
 		[Input('months','options')]
 	)
 	def set_months_values(option_present):
-		return option_present[0]['value']
+		if current_year:
+			return current_month
+		else:
+			return option_present[0]['value']
 
 	app.config['suppress_callback_exceptions']=True
 	@app.callback(
