@@ -4,6 +4,7 @@ This is for analysing the closing stock values wherein it requires a *Qunadle* d
 
 The package requirements are: 
 ```
+quandl
 dash
 dash_core_components
 dash_html_components
