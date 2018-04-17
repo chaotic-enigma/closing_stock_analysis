@@ -1,14 +1,17 @@
 import quandl
 import auth
-import datetime
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+from datetime import datetime
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
 import simplejson as json
 
 app = dash.Dash(__name__)
+
+current_year = datetime.now().year
+current_month = datetime.now().month
 
 api_key = auth.key
 df = quandl.get('NSE/ZENSARTECH', authtoken=api_key)
@@ -73,7 +76,7 @@ app.layout = html.Div([
 		dcc.Dropdown(
 			id='years',
 			options=[{'label' : s,'value' : s} for s in store_value.keys()],
-			value=2018
+			value=current_year
 		),
 		html.Hr(),
 		html.H4('Select Month: '),
@@ -117,7 +120,10 @@ app.config['suppress_callback_exceptions']=True
 	[Input('months','options')]
 )
 def set_months_values(option_present):
-	return option_present[0]['value']
+	if current_year:
+		return current_month
+	else:
+		return option_present[0]['value']
 
 app.config['suppress_callback_exceptions']=True
 @app.callback(
