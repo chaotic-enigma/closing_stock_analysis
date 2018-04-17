@@ -125,7 +125,7 @@ def analyze_close_stock(quandl_api_call):
 		graphs = []
 		close_value = collect_closing_stock(year, month)
 		graphs.append(go.Scatter(
-			x=[i+1 for i in range(len(close_value))],
+			x=[i+1 for i in range(len(close_value)+1)],
 			y=close_value,
 			name=str(year) + ' ' + str(month),
 			mode='lines+markers'
