@@ -14,6 +14,9 @@ app = dash.Dash(__name__)
 
 api_key = auth.key
 
+current_year = datetime.now().year
+current_month = datetime.now().month
+
 def data_as_per_the_year_and_month(dataset):	
 	try:
 		df = quandl.get(dataset, authtoken=api_key)
@@ -66,7 +69,7 @@ def data_as_per_the_year_and_month(dataset):
 				dcc.Dropdown(
 					id='years',
 					options=[{'label' : s,'value' : s} for s in store_value.keys()],
-					value=2018
+					value=current_year
 				),
 				html.Hr(),
 				html.H4('Select Month: '),
@@ -94,7 +97,10 @@ def data_as_per_the_year_and_month(dataset):
 			[Input('months','options')]
 		)
 		def set_months_values(option_present):
-			return option_present[0]['value']
+			if current_year:
+				return current_month
+			else:
+				return option_present[0]['value']
 
 		def grab_important_data(year, month):
 			try:
