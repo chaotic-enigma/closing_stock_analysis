@@ -45,3 +45,7 @@ The graphs will be opened on the browser and by specifing the year and the month
 
 
 The updation of the data automatically happens when it gets updated on the website (*Qundle*) and since the API call is being called, the graphs will be updated easily. No worries.
+
+__End Users__
+
+As of now, this model is only used by the company stakeholders, investors and other parties involved in the `Stock Trading Activities`. But this can be automated and developed in such a way that other interested `Share Holders` can use to take their granted decision of buying and selling the share and achieve gain.
