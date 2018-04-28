@@ -223,5 +223,9 @@ def draw_close_stock(year, month):
 	
 	return {'data' : graphs,'layout' : layout}
 
+external_css = ['https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css']
+for css in external_css:
+	app.css.append_css({'external_url' : css})
+
 if __name__ == '__main__':
 	app.run_server(debug=True)
