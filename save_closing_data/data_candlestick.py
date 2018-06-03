@@ -148,7 +148,7 @@ def grab_important_data(year, month):
 		print(e)
 
 def generate_table(year, month):
-	imp_df = pd.read_csv('imp_data.csv')
+	imp_df = pd.read_csv('imp_data.csv', index_col=0)
 	return html.Table(className='reaponsive-table',
 			children=[
 				html.Thead(
